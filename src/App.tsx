@@ -1,19 +1,38 @@
-import { useState } from 'react'
+import React from 'react'
+import { useAppDispatcher, useAppSelector} from "./app/hooks";
+import { incremented, decremented, amountAdded } from "./features/counter/counter-slice";
 import logo from './logo.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+    const count = useAppSelector((state) => state.counter.value);
+    const dispatch = useAppDispatcher();
+    //add
+    function handleClickAdd() {
+       dispatch(incremented());
+     }
+     //min
+    function handleClickRemove() {
+        dispatch(decremented());
+    }
+    //amount
+     function handleClickAmounted(){
+        dispatch(amountAdded(3));
+     }
+
 
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
+        <p>React Redux!</p>
         <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
+          <h2>
             count is: {count}
-          </button>
+          </h2>
+            <button onClick={handleClickAdd}>ADD</button>
+            <button onClick={handleClickRemove}>MIN</button>
+            <button onClick={handleClickAmounted}>AMOUNT</button>
         </p>
         <p>
           Edit <code>App.tsx</code> and save to test HMR updates.
