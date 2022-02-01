@@ -1,3 +1,4 @@
+This is a Redux React Template Concept in typescript 
 
 
 # redux-toolkit-app
